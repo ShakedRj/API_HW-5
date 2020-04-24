@@ -1,6 +1,6 @@
 # Financial Report
 ## Budget Analysis
-We extracted transaction data for the last 90 days. The information recived was for 48 transaction between 01/25/2020 and 04/15/2020 all transactions  in these 5 categories: Payment, Food and Drink, Shops, Travel, Transfer and Recreation. Total of transactions  was $31935.72.
+We extracted transaction data for the last 90 days. The information recived was for 48 transaction between 01/25/2020 and 04/15/2020 all transactions  in these 5 categories: Payment, Food and Drink, Shops, Travel, Transfer and Recreation. Total of transactions  was $31,935.72.
 
 This is part of the data frame we created to store the information:
 
@@ -36,3 +36,41 @@ The last part of the analysis is to see how much we spent in total every month.
 ![barplot](images/barplot_monthly.png)
 
 Since we asked for the last 90 days its not full 3 months, it starts fron the end of January then we have full Feburary and March and the begining of April.
+
+
+## Retirement Planning
+
+For this part we used  Alpaca api to grab historical data for a 60/40 portfolio using SPY to represent the stock portion and AGG to represent the bonds.
+
+This first data frame hold the closing prices for AGG and SPY.
+
+![](images/closing_prices.png)
+
+The next step is to calculate the daily returns and this is what you can see here:
+
+![](images/daily_returns.png)
+
+
+Now we want to run monte carlo simulation. It will run 500 times each time for 30 years (252*30).
+Basically in each loop we calculate the new price based on the last price, we use the average daily return and avarage standart devision to help us get the best estimate.
+
+In this data frame we can see the monte carlo simulation we ran after we calculated the cumulative returns.
+The size of this table is 7,560 rows x 500 columns
+co responding to 500 simulations and 30 years in each. Here we only showed a few rows since the size is too big.
+
+![](images/monte_carlo.png)
+
+Here we ploted the 500 simulations we ran:
+
+![](images/monte_carlo_plot.png)
+
+The next step was to claculate the 90% interval
+ for the last possible numbers we got in the simulation, we call it ending cumulative returns.
+
+ You can see here that 90% of the numbers we got are between the red lines.
+
+![](images/Bar_con_int.png)
+
+In this section,we calculated and ploted the cumulative returns for the median and 90% confidence intervals. This plot shows the expected cumulative returns for any given day between the first day and the last day of investment.
+
+![](images/challenge.png)
